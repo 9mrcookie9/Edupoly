@@ -1,0 +1,43 @@
+/*===============================================================
+Product:    #PROJECTNAME#
+Developer:  #DEVELOPERNAME#
+Company:    #COMPANY#
+Date:       #CREATIONDATE#
+================================================================*/
+
+using UnityEngine;
+using UnityEngine.Networking;
+using System.Collections.Generic;
+
+namespace #NAMESPACE# {
+    #region Shared
+    #endregion Shared
+    class #SCRIPTNAME# : #BEHAV# {
+        #region Utility
+        #endregion Utility
+        #region Variables
+            #TMANDGO#
+        #endregion Variables
+        #region Events and Delegates
+        #endregion Events and Delegates
+        #region UnityFunctions
+            private void Awake(){
+                #TMANDGOLOAD#
+            }
+            private void Start(){
+            }
+            private void Update(){
+            }
+        #endregion
+        #region Methods
+            public #SCRIPTNAME# cInit(){
+                return this;
+            }
+            public #SCRIPTNAME# cUpdate(){
+                return this;
+            }
+        #endregion
+        #region Enumerations
+        #endregion Enumerations
+    }
+}
