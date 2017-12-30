@@ -161,7 +161,7 @@ namespace Main {
             for (int i = 0; i < unitsController.units.Count; i++) {
                 string name = (unitsController.units[i].transform.GetComponent<Unit.Unit_Type>().UnitType == Unit.Unit_Type.Type.Bot) ? "Bot " : "Gracz ";
                 unitsController.units[i].transform.SetName(name + (i + 1));
-                unitsController.units[i].Main.Init(this);
+                unitsController.units[i].Main.Init(this, i);
                 Color32 color = new Color32((byte)Random.Range(0, 255), (byte)Random.Range(0, 255), (byte)Random.Range(0, 255), 1);
                 unitsController.units[i].transform?.GetComponent<Unit.Unit_Outfit>()?.SetChestColor(color).SetHeadColor(color);
                 unitsController.units[i].transform.GetComponent<Unit.Unit_Move>().data.iMovePos = i;
@@ -294,13 +294,17 @@ namespace Main {
             if (Time.time != fLastUnitDone) {
                 fLastUnitDone = Time.time;
                 tmMovementTarget.position = new Vector3(9999, 9999, 9999);
+                var actualPoint = PointsController.GetPointAt(actualUnit.unit.transform.position);
+                if (!actualPoint)
+                    Debug.LogError("Point at UNIT(" + actualUnit.unit.Main.ID + ") not found", actualUnit.unit.Main.transform);
                 if (!actualUnit.unit.Move.data.bMoveBackward)
-                    PointsController.GetPointAt(actualUnit.unit.Move.data.LastTarget.position).RunOnEventPoints((object Event) => {
+                    actualPoint.RunOnEventPoints((object Event) => {
                         Points.PointEvent data = Event as Points.PointEvent;
+                        Debug.Log(data.name, data);
                         data?.OnPlayerEndRoundAtPoint(this, actualUnit.unit);
                     });
                 else
-                    PointsController.GetPointAt(actualUnit.unit.Move.data.LastTarget.position).RunOnEventPoints((object Event) => {
+                    actualPoint.RunOnEventPoints((object Event) => {
                         Points.PointEvent data = Event as Points.PointEvent;
                         data?.OnPlayerEndRoundAtPointBackward(this, actualUnit.unit);
                     });

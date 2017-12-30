@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class TIMECONTROLLER : MonoBehaviour {
 
+    [Range(0,100)]
     public float time;
     private void Update() {
         Time.timeScale = time;

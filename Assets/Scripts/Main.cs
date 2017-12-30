@@ -95,6 +95,8 @@ public static class Functions {
         public static void Empty() {
 
         }
+        public delegate void OneArg(object arg);
+
     }
 }
 namespace Main {

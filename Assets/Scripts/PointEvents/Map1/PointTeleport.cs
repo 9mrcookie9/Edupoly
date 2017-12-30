@@ -11,11 +11,10 @@ namespace Points {
             if (!target)
                 return;
             Vector3 pos = Unit.Move?.data?.tmTarget[0]?.position ?? Vector3.zero;
-            var point = GameController.PointsController.GetPointAt(pos);
             var actualPoint = GameController.PointsController.GetPointAt(Unit.transform.position);
             var toMove = Mathf.Abs(
                 GameController.PointsController.GetPointId(target) -
-                GameController.PointsController.GetPointId(point)
+                GameController.PointsController.GetPointId(actualPoint)
             );
             bShowTextOnEnter = true;
             GameController.MoveActualUnit(toMove);

@@ -70,6 +70,7 @@ namespace Unit {
     }
     public class Unit_Main : MonoBehaviour {
         public Informations info;
+        public int ID;
         public string sName {
             get { return transform.name; }
             set { transform.name = value; }
@@ -89,8 +90,9 @@ namespace Unit {
         void Awake() {
             move = GetComponent<Unit_Move>();
         }
-        public Unit_Main Init(Main.Main_Controller main) {
+        public Unit_Main Init(Main.Main_Controller main,int ID) {
             gameController = main;
+            this.ID = ID;
             return this;
         }
         public Unit_Main SetData(Informations Info) {

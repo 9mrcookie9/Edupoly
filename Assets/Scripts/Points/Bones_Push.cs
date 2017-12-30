@@ -50,15 +50,14 @@ public class Bones_Push: MonoBehaviour {
             if (main.bWaitOnEnd) {
                 waitOnNextRoundExec = true;
                 Invoke("GiveNextTour", .3f);
-            } else {
-                if (!main.actualUnit.unit.Move.data.bMove) {
-                    var val1 = 2;
-                    var val2 = 2;
-                    if (NumbersText != null)
-                        SetText("Wyrzuciłeś: " + val1 + " + " + val2);
-                    main.MoveActualUnit(val1 + val2);
-                }
+            } else if (!main.actualUnit.unit.Move.data.bMove) {
+                var val1 = Throw;
+                var val2 = Throw;
+                if (NumbersText != null)
+                    SetText("Wyrzuciłeś: " + val1 + " + " + val2);
+                main.MoveActualUnit(val1 + val2);
             }
+
         }
     }
     void GiveNextTour() {
